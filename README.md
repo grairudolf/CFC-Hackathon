@@ -35,5 +35,5 @@ Before setting up the project, ensure the following tools are installed:
 
 ```bash
 git clone https://github.com/garirudolf/CFC-Hackathon.git
-cd your-project-name
+cd CFC25 Hackathon
 
