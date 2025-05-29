@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -156,131 +155,83 @@ const Checkout = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Billing Information */}
-        <div className="animate-slide-in-right">
-          <Card className="bg-white/80 backdrop-blur-sm border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300">
-            <CardHeader className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-t-lg">
-              <CardTitle className="flex items-center">
-                <CreditCard className="h-5 w-5 mr-2" />
-                Billing Information
-              </CardTitle>
+        <div className="space-y-4">
+          <Card className="p-4">
+            <CardHeader>
+              <h2 className="text-lg font-bold">Billing Information</h2>
             </CardHeader>
-            <CardContent className="space-y-4 p-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName" className="text-purple-900 font-medium">First Name *</Label>
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
+            <CardContent>
+              <form className="space-y-4">
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input 
+                    id="email" 
+                    name="email"
+                    type="email"
+                    value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
+                    className="w-full border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-purple-900 font-medium">Last Name *</Label>
+                <div>
+                  <Label htmlFor="address">Address</Label>
                   <Input
-                    id="lastName"
-                    name="lastName"
-                    value={formData.lastName}
+                    id="address"
+                    name="address"
+                    value={formData.address}
                     onChange={handleInputChange}
-                    required
-                    className="border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
+                    className="w-full border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                   />
                 </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-purple-900 font-medium">Email Address *</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="phoneNumber" className="text-purple-900 font-medium">Phone Number *</Label>
-                <Input
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  type="tel"
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="+237 6XX XXX XXX"
-                  className="border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="address" className="text-purple-900 font-medium">Address</Label>
-                <Input
-                  id="address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                  className="border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="city" className="text-purple-900 font-medium">City</Label>
-                <Input
-                  id="city"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  className="border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
-                />
-              </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="city">City</Label>
+                    <Input
+                      id="city"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      className="w-full border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="postalCode">Postal Code</Label>
+                    <Input
+                      id="postalCode"
+                      name="postalCode"
+                      className="w-full border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
+                    />
+                  </div>
+                </div>
+              </form>
             </CardContent>
           </Card>
         </div>
 
         {/* Order Summary */}
-        <div className="animate-slide-in-right delay-100">
-          <Card className="bg-white/80 backdrop-blur-sm border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300">
-            <CardHeader className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-t-lg">
-              <CardTitle>Order Summary</CardTitle>
+        <div className="space-y-4">
+          <Card className="p-4">
+            <CardHeader>
+              <h2 className="text-lg font-bold">Order Summary</h2>
             </CardHeader>
-            <CardContent className="space-y-4 p-6">
-              <div className="space-y-3">
-                {state.items.map((item) => (
-                  <div key={item._id} className="flex justify-between items-center p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors duration-200">
-                    <div className="flex-1">
-                      <p className="font-medium text-purple-900 truncate">{item.title}</p>
-                      <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
-                    </div>
-                    <span className="font-bold text-purple-900">{(item.price * item.quantity).toLocaleString()} CFA</span>
-                  </div>
-                ))}
+            <CardContent>
+              <div className="flex justify-between">
+                <span>Subtotal</span>
+                <span>{state.total.toLocaleString()} CFA</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Shipping</span>
+                <span className="text-green-600 font-medium">Free</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Tax (8%):</span>
+                <span>{(state.total * 0.08).toLocaleString()} CFA</span>
               </div>
               
-              <hr className="border-purple-200" />
+              <hr className="border-purple-200 my-4" />
               
-              <div className="space-y-2">
-                <div className="flex justify-between text-gray-700">
-                  <span>Subtotal:</span>
-                  <span>{state.total.toLocaleString()} CFA</span>
-                </div>
-                <div className="flex justify-between text-gray-700">
-                  <span>Shipping:</span>
-                  <span className="text-green-600 font-medium">Free</span>
-                </div>
-                <div className="flex justify-between text-gray-700">
-                  <span>Tax (8%):</span>
-                  <span>{(state.total * 0.08).toLocaleString()} CFA</span>
-                </div>
-              </div>
-              
-              <hr className="border-purple-200" />
-              
-              <div className="flex justify-between text-xl font-bold text-purple-900 bg-purple-50 p-3 rounded-lg">
+              <div className="flex justify-between text-xl font-bold text-purple-900">
                 <span>Total:</span>
                 <span>{Math.round(totalWithTax).toLocaleString()} CFA</span>
               </div>

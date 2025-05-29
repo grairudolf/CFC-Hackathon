@@ -133,85 +133,24 @@ const BookDetails = () => {
         Back
       </Button>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Book Image */}
         <div className="flex justify-center">
-          <Card className="overflow-hidden bg-white/70 backdrop-blur-sm border-amber-200">
-            <img
-              src={book.image}
-              alt={book.title}
-              className="w-full max-w-md h-auto object-cover"
-            />
-          </Card>
+          <img src={book.image} alt={book.title} className="w-full max-w-md rounded-lg shadow-lg" />
         </div>
 
-        {/* Book Information */}
-        <div className="space-y-6">
-          <div>
-            <h1 className="text-4xl font-bold text-amber-900 mb-3">{book.title}</h1>
-            <p className="text-xl text-amber-700 font-medium mb-4">by {book.author}</p>
-            
-            <div className="flex items-center mb-6">
-              <div className="flex items-center mr-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                ))}
-                <span className="ml-2 text-gray-600">(4.5 out of 5)</span>
-              </div>
-              <Badge className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-4 py-2">
-                {book.price.toLocaleString()} CFA
-              </Badge>
-            </div>
-          </div>
-
-          <Card className="bg-white/70 backdrop-blur-sm border-amber-200">
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-amber-900 mb-3">Description</h3>
-              <p className="text-gray-700 leading-relaxed">{book.description}</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/70 backdrop-blur-sm border-amber-200">
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-amber-900 mb-3">Book Details</h3>
-              <div className="space-y-2 text-gray-700">
-                <div className="flex justify-between">
-                  <span>Format:</span>
-                  <span>Hardcover</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Pages:</span>
-                  <span>180</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Language:</span>
-                  <span>English</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Publisher:</span>
-                  <span>Classic Books Inc.</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="flex gap-4">
-            <Button 
-              onClick={handleAddToCart}
-              className="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-lg py-3"
-              size="lg"
-            >
-              <ShoppingCart className="h-5 w-5 mr-2" />
-              Add to Cart
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-amber-300 text-amber-900 hover:bg-amber-50"
-            >
-              <Heart className="h-5 w-5" />
-            </Button>
-          </div>
+        {/* Book Details */}
+        <div>
+          <h1 className="text-2xl font-bold">{book.title}</h1>
+          <p className="text-lg text-gray-600">{book.author}</p>
+          <p className="text-purple-600 text-xl font-semibold">{book.price} CFA</p>
+          <Button 
+            onClick={handleAddToCart}
+            className="mt-4 w-full sm:w-auto"
+          >
+            <ShoppingCart className="h-5 w-5 mr-2" />
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>

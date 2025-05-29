@@ -202,12 +202,11 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
       )}
 
       {/* Books Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {booksToShow.map((book, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {booksToShow?.map((book) => (
           <Card
             key={book._id}
             className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 bg-white/80 backdrop-blur-sm border-purple-200 hover:border-purple-400 animate-fade-in hover-scale"
-            style={{ animationDelay: `${index * 100}ms` }}
           >
             <CardHeader className="p-0">
               <div className="relative overflow-hidden rounded-t-lg">
@@ -225,7 +224,7 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
               </div>
             </CardHeader>
 
-            <CardContent className="p-6">
+            <CardContent className="p-6"></CardContent>
               <CardTitle className="text-xl font-bold text-purple-900 mb-2 line-clamp-2 group-hover:text-purple-700 transition-colors">
                 {book.title}
               </CardTitle>
