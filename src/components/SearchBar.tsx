@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -70,7 +70,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         )}
         <Button
           type="submit"
-          className="absolute right-2 bg-blue-600 text-white px-2 py-2 rounded-lg hover:bg-blue-700"
+          className="absolute right-2 bg-purple-500 text-white px-3 py-2 rounded-lg hover:bg-purple-600"
         >
           <Search className="h-4 w-4" />
         </Button>

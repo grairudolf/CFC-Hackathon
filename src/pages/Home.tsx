@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,8 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star } from "lucide-react";
+import SearchBar from "@/components/SearchBar";
 import { useCart, Book } from "@/contexts/CartContext";
 import { toast } from "sonner";
 
@@ -77,7 +75,8 @@ const mockBooks: Book[] = [
     _id: "7",
     title: "The Power of Now",
     author: "Eckhart Tolle",
-    description: "A guide to spiritual enlightenment and living in the present.",
+    description:
+      "A guide to spiritual enlightenment and living in the present.",
     price: Math.round(15.99 * 600), // Converted to CFA
     image:
       "https://m.media-amazon.com/images/I/71aG+xDKSYL._AC_UY327_FMwebp_QL65_.jpg",
@@ -100,13 +99,10 @@ const fetchBooks = async (): Promise<Book[]> => {
   });
 };
 
-interface HomeProps {
-  searchQuery: string;
-}
-
-const Home: React.FC<HomeProps> = ({ searchQuery }) => {
+const Home: React.FC = () => {
   const { addToCart } = useCart();
   const [visibleBooks, setVisibleBooks] = useState(8); // Number of books to display initially
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>(mockBooks);
 
   const {
     data: books,
@@ -127,6 +123,33 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
 
   const handleViewMore = () => {
     setVisibleBooks((prev) => prev + 8); // Load 8 more books
+  };
+
+  const handleSearch = (query: string) => {
+    if (!query.trim()) {
+      setFilteredBooks(books || []);
+      return;
+    }
+
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = books?.filter(
+      (book) =>
+        book.title.toLowerCase().includes(lowerCaseQuery) ||
+        book.author.toLowerCase().includes(lowerCaseQuery)
+    );
+    setFilteredBooks(filtered || []);
+  };
+
+  const fetchSuggestions = async (query: string): Promise<string[]> => {
+    if (!books) return [];
+    const lowerCaseQuery = query.toLowerCase();
+    return books
+      .filter(
+        (book) =>
+          book.title.toLowerCase().includes(lowerCaseQuery) ||
+          book.author.toLowerCase().includes(lowerCaseQuery)
+      )
+      .map((book) => book.title);
   };
 
   if (isLoading) {
@@ -182,9 +205,16 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
         </p>
       </div>
 
+      {/* Search Bar */}
+      <SearchBar
+        onSearch={handleSearch}
+        fetchSuggestions={fetchSuggestions}
+        className="mb-8"
+      />
+
       {/* Books Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {books?.slice(0, visibleBooks).map((book) => (
+        {filteredBooks.slice(0, visibleBooks).map((book) => (
           <Card
             key={book._id}
             className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 bg-white/80 backdrop-blur-sm border-purple-200 hover:border-purple-400 animate-fade-in hover-scale"
@@ -198,9 +228,9 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4">
-                  <Badge className="bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg animate-pulse">
+                  <p className="bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg animate-pulse rounded-full px-3 py-1 text-sm font-semibold">
                     {book.price.toLocaleString()} CFA
-                  </Badge>
+                  </p>
                 </div>
               </div>
             </CardHeader>
@@ -217,29 +247,30 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
               </p>
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star
+                  <svg
                     key={i}
-                    className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                  />
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 fill-current text-yellow-400"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 15l-5.878 3.09 1.121-6.535L1 7.545l6.545-.954L10 1l2.454 5.591L19 7.545l-4.243 3.905 1.121 6.535z" />
+                  </svg>
                 ))}
                 <span className="ml-2 text-sm text-gray-600">(4.5)</span>
               </div>
             </CardContent>
 
             <CardFooter className="p-6 pt-0 flex gap-3">
-              <Link to={`/book/${book._id}`} className="flex-1">
-                <Button
-                  variant="outline"
-                  className="w-full border-purple-300 text-purple-900 hover:bg-purple-50 hover:border-purple-500 transition-all duration-200 hover:scale-105"
-                >
-                  View Details
-                </Button>
-              </Link>
+              <Button
+                variant="outline"
+                className="flex-1 border-purple-300 text-purple-900 hover:bg-purple-50 hover:border-purple-500 transition-all duration-200 hover:scale-105"
+              >
+                View Details
+              </Button>
               <Button
                 onClick={() => handleAddToCart(book)}
                 className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white transition-all duration-200 hover:scale-105"
               >
-                <ShoppingCart className="h-4 w-4 mr-2" />
                 Add to Cart
               </Button>
             </CardFooter>
