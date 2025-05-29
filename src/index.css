@@ -113,7 +113,7 @@
   }
 
   .search-bar {
-    @apply w-full md:w-64 border border-purple-300 rounded-lg px-4 py-2 text-sm;
+    @apply w-full md:w-64 border border-purple-300 rounded-lg px-4 py-2 text-sm text-gray-900 placeholder-gray-500;
   }
 
   .search-bar:focus {

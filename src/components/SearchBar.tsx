@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -11,7 +10,6 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className = "" }) => {
   const [query, setQuery] = useState("");
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -25,7 +23,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className = "" }) => {
   const clearSearch = () => {
     setQuery("");
     onSearch("");
-    setIsExpanded(false);
   };
 
   return (
@@ -36,7 +33,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className = "" }) => {
           value={query}
           onChange={handleInputChange}
           placeholder="Search books, authors..."
-          className="w-full border border-purple-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="w-full border border-purple-300 rounded-lg px-4 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
         {query && (
           <Button
