@@ -1,5 +1,6 @@
 # CFC25 Hackathon
-This is a repository created by "The Scripts" Team for the Code For Change Hackathon 2025 for the purpose of  practice, and building a solution to a problem in the society.
+
+This repository was created by The Scripts team for the Code for Change Hackathon 2025. We’re building a Book Purchase Platform using the MERN stack with Nkwa Payment API integration. The project aims to address limited access to educational resources by making it easier to browse and buy books online, while also helping us practice real-world dev.
 
 ## 🌐 Project Overview
 
@@ -68,22 +69,26 @@ Before setting up the project, ensure the following tools are installed:
 ### Frontend Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Create environment file**
+
    ```bash
    # Create .env file in frontend directory
    VITE_API_URL=http://localhost:5000
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -93,22 +98,26 @@ Before setting up the project, ensure the following tools are installed:
 ### Backend Setup (To be implemented)
 
 1. **Navigate to backend directory**
+
    ```bash
    cd ../backend
    ```
 
 2. **Initialize Node.js project**
+
    ```bash
    npm init -y
    ```
 
 3. **Install dependencies**
+
    ```bash
    npm install express mongoose cors dotenv axios
    npm install -D nodemon
    ```
 
 4. **Create environment file**
+
    ```bash
    # Create .env file in backend directory
    PORT=5000
@@ -118,11 +127,12 @@ Before setting up the project, ensure the following tools are installed:
    ```
 
 5. **Create server.js**
+
    ```javascript
-   const express = require('express');
-   const mongoose = require('mongoose');
-   const cors = require('cors');
-   require('dotenv').config();
+   const express = require("express");
+   const mongoose = require("mongoose");
+   const cors = require("cors");
+   require("dotenv").config();
 
    const app = express();
 
@@ -131,8 +141,8 @@ Before setting up the project, ensure the following tools are installed:
    app.use(express.json());
 
    // Routes
-   app.use('/api/books', require('./routes/books'));
-   app.use('/api/payment', require('./routes/payments'));
+   app.use("/api/books", require("./routes/books"));
+   app.use("/api/payment", require("./routes/payments"));
 
    // Database connection
    mongoose.connect(process.env.MONGODB_URI, {
@@ -156,10 +166,12 @@ Before setting up the project, ensure the following tools are installed:
 ### Nkwa Payment API Setup
 
 1. **API Key Configuration**
+
    - Add your Nkwa API key to the backend `.env` file
    - The API key `7Wvq6JTL_i68jsgyMU474` should be stored as `NKWA_API_KEY`
 
 2. **Payment Integration**
+
    - The payment endpoint is configured to use `https://api.nkwa.com/payments/initiate`
    - Authorization header format: `Bearer 7Wvq6JTL_i68jsgyMU474`
    - The API expects: amount, email, callback_url
@@ -171,11 +183,13 @@ Before setting up the project, ensure the following tools are installed:
 ## 📚 API Endpoints
 
 ### Books
+
 - `GET /api/books` - Fetch all books
 - `GET /api/books/:id` - Fetch a specific book
 - `POST /api/books` - Add a new book (admin)
 
 ### Payments
+
 - `POST /api/payment/create` - Initialize payment with Nkwa
 
 ## 🎨 Frontend Technologies
@@ -202,10 +216,12 @@ Before setting up the project, ensure the following tools are installed:
 ## 🌐 Deployment
 
 ### Frontend Deployment
+
 - Build the project: `npm run build`
 - Deploy to platforms like Vercel, Netlify, or GitHub Pages
 
 ### Backend Deployment
+
 - Deploy to platforms like Heroku, Railway, or DigitalOcean
 - Ensure environment variables are properly configured
 - Set up MongoDB Atlas for cloud database
@@ -213,11 +229,13 @@ Before setting up the project, ensure the following tools are installed:
 ## 🔐 Environment Variables
 
 ### Frontend (.env)
+
 ```
 VITE_API_URL=http://localhost:5000
 ```
 
 ### Backend (.env)
+
 ```
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/bookstore
@@ -242,5 +260,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For support, email rtech777r@gmail.com or create an issue in the repository.
 
 ---
-
-
