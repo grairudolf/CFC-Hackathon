@@ -34,6 +34,6 @@ Before setting up the project, ensure the following tools are installed:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-project-name.git
+git clone https://github.com/garirudolf/CFC-Hackathon.git
 cd your-project-name
 
