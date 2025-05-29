@@ -73,6 +73,25 @@ const mockBooks: Book[] = [
     image:
       "https://m.media-amazon.com/images/I/71UypkUjStL._AC_UY327_FMwebp_QL65_.jpg",
   },
+  {
+    _id: "7",
+    title: "The Power of Now",
+    author: "Eckhart Tolle",
+    description: "A guide to spiritual enlightenment and living in the present.",
+    price: Math.round(15.99 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/71aG+xDKSYL._AC_UY327_FMwebp_QL65_.jpg",
+  },
+  {
+    _id: "8",
+    title: "Man's Search for Meaning",
+    author: "Viktor E. Frankl",
+    description:
+      "A profound exploration of finding purpose in life, even in the face of suffering.",
+    price: Math.round(12.99 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/81s6DUyQCZL._AC_UY327_FMwebp_QL65_.jpg",
+  },
 ];
 
 const fetchBooks = async (): Promise<Book[]> => {
