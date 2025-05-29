@@ -239,7 +239,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📞 Support
 
-For support, email rtech777r@gmail.com.com or create an issue in the repository.
+For support, email rtech777r@gmail.com or create an issue in the repository.
 
 ---
 
