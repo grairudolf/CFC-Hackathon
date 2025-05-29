@@ -87,7 +87,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ searchQuery }) => {
   const { addToCart } = useCart();
-  const [displayedBooks, setDisplayedBooks] = useState<Book[]>([]);
+  const [visibleBooks, setVisibleBooks] = useState(8); // Number of books to display initially
 
   const {
     data: books,
@@ -96,19 +96,7 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
   } = useQuery({
     queryKey: ["books"],
     queryFn: fetchBooks,
-    onSuccess: (data) => {
-      setDisplayedBooks(data);
-    },
   });
-
-  // Filter books based on search query
-  const filteredBooks =
-    books?.filter(
-      (book) =>
-        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.description.toLowerCase().includes(searchQuery.toLowerCase())
-    ) || [];
 
   const handleAddToCart = (book: Book) => {
     addToCart(book);
@@ -116,6 +104,10 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
       className:
         "bg-gradient-to-r from-green-500 to-green-600 text-white border-0",
     });
+  };
+
+  const handleViewMore = () => {
+    setVisibleBooks((prev) => prev + 8); // Load 8 more books
   };
 
   if (isLoading) {
@@ -157,53 +149,23 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
     );
   }
 
-  const booksToShow = searchQuery ? filteredBooks : books || [];
-
   return (
     <div className="container mx-auto px-4 py-8 animate-fade-in">
       {/* Hero Section */}
-      {!searchQuery && (
-        <div className="text-center mb-12 animate-scale-in">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-900 to-blue-900 bg-clip-text text-transparent mb-4">
-            Discover Your Next
-            <span className="block text-purple-600"> Great Read</span>
-          </h1>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            Explore our curated collection of timeless classics and contemporary
-            favorites. Find the perfect book to transport you to new worlds.
-          </p>
-        </div>
-      )}
-
-      {/* Search Results Header */}
-      {searchQuery && (
-        <div className="mb-8 animate-fade-in">
-          <h2 className="text-2xl font-bold text-purple-900 mb-2">
-            Search Results for "{searchQuery}"
-          </h2>
-          <p className="text-gray-600">
-            Found {booksToShow.length} book{booksToShow.length !== 1 ? "s" : ""}
-          </p>
-        </div>
-      )}
-
-      {/* No Results */}
-      {searchQuery && booksToShow.length === 0 && (
-        <div className="text-center py-16 animate-fade-in">
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-8">
-            <h3 className="text-xl font-semibold text-purple-900 mb-2">
-              No books found
-            </h3>
-            <p className="text-gray-600">
-              Try adjusting your search terms or browse all books.
-            </p>
-          </div>
-        </div>
-      )}
+      <div className="text-center mb-12 animate-scale-in">
+        <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-900 to-blue-900 bg-clip-text text-transparent mb-4">
+          Discover Your Next
+          <span className="block text-purple-600"> Great Read</span>
+        </h1>
+        <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+          Explore our curated collection of timeless classics and contemporary
+          favorites. Find the perfect book to transport you to new worlds.
+        </p>
+      </div>
 
       {/* Books Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {booksToShow?.map((book) => (
+        {books?.slice(0, visibleBooks).map((book) => (
           <Card
             key={book._id}
             className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 bg-white/80 backdrop-blur-sm border-purple-200 hover:border-purple-400 animate-fade-in hover-scale"
@@ -224,7 +186,7 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
               </div>
             </CardHeader>
 
-            <CardContent className="p-6"></CardContent>
+            <CardContent className="p-6">
               <CardTitle className="text-xl font-bold text-purple-900 mb-2 line-clamp-2 group-hover:text-purple-700 transition-colors">
                 {book.title}
               </CardTitle>
@@ -265,6 +227,18 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
           </Card>
         ))}
       </div>
+
+      {/* View More Button */}
+      {visibleBooks < books?.length && (
+        <div className="text-center mt-8">
+          <Button
+            onClick={handleViewMore}
+            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-200 hover:scale-105"
+          >
+            View More
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
