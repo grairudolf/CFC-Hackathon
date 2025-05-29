@@ -248,16 +248,14 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
       </div>
 
       {/* View More Button */}
-      {visibleBooks < books?.length && (
-        <div className="text-center mt-8">
-          <Button
-            onClick={handleViewMore}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-200 hover:scale-105"
-          >
-            View More
-          </Button>
-        </div>
-      )}
+      <div className="text-center mt-8">
+        <Button
+          onClick={handleViewMore}
+          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg shadow-lg transition-none"
+        >
+          View More
+        </Button>
+      </div>
     </div>
   );
 };
