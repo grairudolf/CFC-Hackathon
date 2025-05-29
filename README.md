@@ -8,8 +8,8 @@ This is a MERN (MongoDB, Express.js, React.js, Node.js) stack web application de
 ---
 
 ```
-bookstore/
-├── frontend/                 # React frontend application
+CFC-Hackathon/
+├                # React frontend application
 │   ├── src/
 │   │   ├── components/       # Reusable UI components
 │   │   │   └── Navbar.tsx
@@ -70,7 +70,6 @@ Before setting up the project, ensure the following tools are installed:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd bookstore/frontend
    ```
 
 2. **Install dependencies**
