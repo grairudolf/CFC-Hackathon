@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -82,10 +82,10 @@ const fetchBooks = async (): Promise<Book[]> => {
 };
 
 interface HomeProps {
-  searchQuery?: string;
+  searchQuery: string;
 }
 
-const Home = ({ searchQuery = "" }: HomeProps) => {
+const Home: React.FC<HomeProps> = ({ searchQuery }) => {
   const { addToCart } = useCart();
   const [displayedBooks, setDisplayedBooks] = useState<Book[]>([]);
 

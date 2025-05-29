@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,18 +7,12 @@ import { useCart } from '@/contexts/CartContext';
 import SearchBar from './SearchBar';
 
 interface NavbarProps {
-  onSearch?: (query: string) => void;
+  onSearch: (query: string) => void;
 }
 
-const Navbar = ({ onSearch }: NavbarProps) => {
+const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
   const { getCartItemCount } = useCart();
   const cartItemCount = getCartItemCount();
-
-  const handleSearch = (query: string) => {
-    if (onSearch) {
-      onSearch(query);
-    }
-  };
 
   return (
     <nav className="bg-gradient-to-r from-purple-600 to-blue-600 backdrop-blur-sm border-b border-purple-300 sticky top-0 z-50 shadow-lg">
@@ -33,7 +27,7 @@ const Navbar = ({ onSearch }: NavbarProps) => {
           </Link>
           
           <div className="flex items-center space-x-4">
-            <SearchBar onSearch={handleSearch} />
+            <SearchBar onSearch={onSearch} />
             
             <Link to="/">
               <Button 

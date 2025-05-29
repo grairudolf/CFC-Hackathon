@@ -1,34 +1,41 @@
-
-import { useState } from 'react';
-import { Search, X } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { useState } from "react";
+import { Search, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
   className?: string;
 }
 
-const SearchBar = ({ onSearch, className = '' }: SearchBarProps) => {
-  const [query, setQuery] = useState('');
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className = "" }) => {
+  const [query, setQuery] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query);
+    onSearch(query.trim()); // Pass the trimmed query to avoid unnecessary spaces
   };
 
   const clearSearch = () => {
-    setQuery('');
-    onSearch('');
+    setQuery("");
+    onSearch("");
     setIsExpanded(false);
   };
 
   return (
     <div className={`relative ${className}`}>
       <form onSubmit={handleSearch} className="relative">
-        <div className={`transition-all duration-300 ${isExpanded ? 'w-80' : 'w-12'} flex items-center`}>
+        <div
+          className={`transition-all duration-300 ${
+            isExpanded ? "w-80" : "w-12"
+          } flex items-center`}
+        >
           {isExpanded ? (
             <Card className="flex items-center w-full p-2 bg-white/90 backdrop-blur-sm border-purple-200 shadow-lg">
               <Search className="h-4 w-4 text-purple-600 mx-2" />
@@ -36,7 +43,7 @@ const SearchBar = ({ onSearch, className = '' }: SearchBarProps) => {
                 type="text"
                 placeholder="Search books, authors..."
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={handleInputChange}
                 className="border-0 focus:ring-0 bg-transparent text-purple-900 placeholder:text-purple-500"
                 autoFocus
               />
