@@ -119,6 +119,14 @@
   .search-bar:focus {
     @apply outline-none ring-2 ring-purple-500;
   }
+
+  .suggestions-dropdown {
+    @apply absolute z-10 mt-2 w-full bg-white border border-purple-300 rounded-lg shadow-lg max-h-40 overflow-y-auto;
+  }
+
+  .suggestions-dropdown li {
+    @apply px-4 py-2 hover:bg-purple-100 cursor-pointer;
+  }
 }
 
 @layer utilities {

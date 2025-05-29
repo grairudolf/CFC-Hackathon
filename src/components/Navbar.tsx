@@ -14,6 +14,20 @@ const Navbar: React.FC = () => {
     // Add logic to handle the search query (e.g., update state or navigate)
   };
 
+  const fetchSuggestions = async (query: string): Promise<string[]> => {
+    // Mock suggestions for demonstration
+    const suggestions = [
+      "Atomic Habits",
+      "The Alchemist",
+      "Rich Dad Poor Dad",
+      "The Power of Now",
+      "Man's Search for Meaning",
+    ];
+    return suggestions.filter((item) =>
+      item.toLowerCase().includes(query.toLowerCase())
+    );
+  };
+
   return (
     <nav className="bg-gradient-to-r from-purple-600 to-blue-600 backdrop-blur-sm border-b border-purple-300 sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
@@ -24,7 +38,11 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Search Bar */}
         <div className="hidden md:flex items-center space-x-4">
-          <SearchBar onSearch={handleSearch} className="w-64" />
+          <SearchBar
+            onSearch={handleSearch}
+            fetchSuggestions={fetchSuggestions}
+            className="w-64"
+          />
           <Link to="/cart" className="relative text-white">
             <ShoppingCart className="h-6 w-6" />
             {cartItemCount > 0 && (
@@ -51,7 +69,11 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-purple-700 text-white p-4 space-y-4">
-          <SearchBar onSearch={handleSearch} className="w-full" />
+          <SearchBar
+            onSearch={handleSearch}
+            fetchSuggestions={fetchSuggestions}
+            className="w-full"
+          />
           <Link to="/cart" className="flex items-center">
             <ShoppingCart className="h-6 w-6 mr-2" />
             Cart ({cartItemCount})
