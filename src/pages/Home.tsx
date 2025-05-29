@@ -251,7 +251,8 @@ const Home: React.FC<HomeProps> = ({ searchQuery }) => {
       <div className="text-center mt-8">
         <Button
           onClick={handleViewMore}
-          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg shadow-lg transition-none"
+          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg shadow-lg transition-none cursor-not-allowed"
+          disabled
         >
           View More
         </Button>
