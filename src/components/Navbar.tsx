@@ -12,11 +12,14 @@ const Navbar: React.FC = () => {
   return (
     <nav className="bg-gradient-to-r from-purple-600 to-blue-600 backdrop-blur-sm border-b border-purple-300 sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        {/* Logo */}
         <Link to="/" className="text-white text-lg font-bold">
           BookStore
         </Link>
+
+        {/* Desktop Search Bar */}
         <div className="hidden md:flex items-center space-x-4">
-          <SearchBar onSearch={() => {}} />
+          <SearchBar onSearch={() => {}} className="w-64" />
           <Link to="/cart" className="relative text-white">
             <ShoppingCart className="h-6 w-6" />
             {cartItemCount > 0 && (
@@ -26,6 +29,8 @@ const Navbar: React.FC = () => {
             )}
           </Link>
         </div>
+
+        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -37,9 +42,11 @@ const Navbar: React.FC = () => {
           )}
         </button>
       </div>
+
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-purple-700 text-white p-4 space-y-4">
-          <SearchBar onSearch={() => {}} />
+          <SearchBar onSearch={() => {}} className="w-full" />
           <Link to="/cart" className="flex items-center">
             <ShoppingCart className="h-6 w-6 mr-2" />
             Cart ({cartItemCount})

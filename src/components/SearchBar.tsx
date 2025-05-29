@@ -19,7 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className = "" }) => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query.trim()); // Pass the trimmed query to avoid unnecessary spaces
+    onSearch(query.trim());
   };
 
   const clearSearch = () => {
@@ -30,47 +30,31 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className = "" }) => {
 
   return (
     <div className={`relative ${className}`}>
-      <form onSubmit={handleSearch} className="relative">
-        <div
-          className={`transition-all duration-300 ${
-            isExpanded ? "w-80" : "w-12"
-          } flex items-center`}
+      <form onSubmit={handleSearch} className="relative flex items-center">
+        <Input
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          placeholder="Search books, authors..."
+          className="w-full border border-purple-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+        {query && (
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={clearSearch}
+            className="absolute right-2 text-purple-500 hover:text-purple-700"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        )}
+        <Button
+          type="submit"
+          className="ml-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
         >
-          {isExpanded ? (
-            <Card className="flex items-center w-full p-2 bg-white/90 backdrop-blur-sm border-purple-200 shadow-lg">
-              <Search className="h-4 w-4 text-purple-600 mx-2" />
-              <Input
-                type="text"
-                placeholder="Search books, authors..."
-                value={query}
-                onChange={handleInputChange}
-                className="border-0 focus:ring-0 bg-transparent text-purple-900 placeholder:text-purple-500"
-                autoFocus
-              />
-              {query && (
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={clearSearch}
-                  className="h-6 w-6 p-0 hover:bg-purple-100"
-                >
-                  <X className="h-3 w-3" />
-                </Button>
-              )}
-            </Card>
-          ) : (
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsExpanded(true)}
-              className="h-10 w-10 text-purple-900 hover:text-purple-700 hover:bg-purple-100 transition-all duration-200 hover:scale-110"
-            >
-              <Search className="h-5 w-5" />
-            </Button>
-          )}
-        </div>
+          <Search className="h-4 w-4" />
+        </Button>
       </form>
     </div>
   );
