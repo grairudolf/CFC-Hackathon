@@ -1,10 +1,10 @@
 # CFC25 Hackathon
 
-This repository was created by The Scripts team for the Code for Change Hackathon 2025. We’re building a Book Purchase Platform using the MERN stack with Nkwa Payment API integration. The project aims to address limited access to educational resources by making it easier to browse and buy books online, while also helping us practice real-world dev.
+Welcome to the repository for the Code for Change Hackathon 2025! This project is being developed by The Scripts team to create a Book Purchase Platform using the MERN stack with Nkwa Payment API integration. Your contributions will help address limited access to educational resources by making it easier to browse and buy books online, while also giving you the opportunity to practice real-world development.
 
 ## 🌐 Project Overview
 
-This is a MERN (MongoDB, Express.js, React.js, Node.js) stack web application designed to [brief description — e.g., manage tasks, connect users, track expenses, etc.]. The app offers a seamless full-stack experience, with a RESTful API on the backend and a modern frontend interface.
+This is a MERN (MongoDB, Express.js, React.js, Node.js) stack web application designed to [brief description — e.g., manage tasks, connect users, track expenses, etc.]. The app offers a seamless full-stack experience, with an API intergration on the backend and a modern frontend interface.
 
 ---
 
