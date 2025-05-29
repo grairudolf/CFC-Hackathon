@@ -16,6 +16,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -41,6 +42,16 @@ const SearchBar: React.FC<SearchBarProps> = ({
     setSuggestions([]); // Clear suggestions after selection
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      setActiveIndex((prev) => Math.min(prev + 1, suggestions.length - 1));
+    } else if (e.key === "ArrowUp") {
+      setActiveIndex((prev) => Math.max(prev - 1, 0));
+    } else if (e.key === "Enter" && activeIndex >= 0) {
+      handleSuggestionClick(suggestions[activeIndex]);
+    }
+  };
+
   const clearSearch = () => {
     setQuery("");
     onSearch("");
@@ -49,7 +60,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      <form onSubmit={handleSearch} className="relative flex items-center">
+      <form
+        onSubmit={handleSearch}
+        className="relative flex items-center"
+        onKeyDown={handleKeyDown}
+      >
         <Input
           type="text"
           value={query}
@@ -83,7 +98,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <li
               key={index}
               onClick={() => handleSuggestionClick(suggestion)}
-              className="px-4 py-2 hover:bg-purple-100 cursor-pointer"
+              className={`px-4 py-2 hover:bg-purple-100 cursor-pointer ${
+                index === activeIndex ? "bg-purple-200" : ""
+              }`}
             >
               {suggestion}
             </li>

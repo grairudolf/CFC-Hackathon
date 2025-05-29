@@ -8,10 +8,11 @@ const Navbar: React.FC = () => {
   const { getCartItemCount } = useCart();
   const cartItemCount = getCartItemCount();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query: string) => {
+    setSearchQuery(query);
     console.log("Search query:", query); // Debugging: Ensure the query is logged
-    // Add logic to handle the search query (e.g., update state or navigate)
   };
 
   const fetchSuggestions = async (query: string): Promise<string[]> => {
@@ -32,7 +33,12 @@ const Navbar: React.FC = () => {
     <nav className="bg-gradient-to-r from-purple-600 to-blue-600 backdrop-blur-sm border-b border-purple-300 sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Logo */}
-        <Link to="/" className="text-white text-lg font-bold">
+        <Link to="/" className="text-white text-lg font-bold flex items-center">
+          <img
+            src="/stack-of-books.png"
+            alt="BookStore Icon"
+            className="h-6 w-6 mr-2"
+          />
           BookStore
         </Link>
 
