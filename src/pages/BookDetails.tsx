@@ -9,54 +9,63 @@ import { toast } from 'sonner';
 
 // Mock data - replace with actual API call
 const mockBooks: Book[] = [
-  {
-    _id: '1',
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    price: 7500,
-    description: 'A classic American novel set in the Jazz Age, exploring themes of wealth, love, and the American Dream. Set in the summer of 1922, the story follows Nick Carraway, a young bond salesman who moves to West Egg, Long Island, and becomes neighbors with the mysterious millionaire Jay Gatsby. Through lavish parties and tragic love affairs, Fitzgerald paints a vivid picture of the Roaring Twenties and the corruption of the American Dream.',
-    image: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=800&q=80'
+   {
+    _id: "1",
+    title: "Atomic Habits",
+    author: "James Clear",
+    description: "An easy & proven way to build good habits & break bad ones.",
+    price: Math.round(18.99 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/91bYsX41DVL._AC_UY327_FMwebp_QL65_.jpg",
   },
   {
-    _id: '2',
-    title: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
-    price: 8500,
-    description: 'A gripping tale of racial injustice and childhood innocence in the American South.',
-    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=800&q=80'
+    _id: "2",
+    title: "The Alchemist",
+    author: "Paulo Coelho",
+    description:
+      "A philosophical story about a shepherd's journey to find his personal legend.",
+    price: Math.round(14.99 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UY327_FMwebp_QL65_.jpg",
   },
   {
-    _id: '3',
-    title: '1984',
-    author: 'George Orwell',
-    price: 8000,
-    description: 'A dystopian social science fiction novel about totalitarian control and surveillance.',
-    image: 'https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=800&q=80'
+    _id: "3",
+    title: "Rich Dad Poor Dad",
+    author: "Robert T. Kiyosaki",
+    description:
+      "What the rich teach their kids about money that the poor and middle class do not.",
+    price: Math.round(11.99 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/81bsw6fnUiL._AC_UY327_FMwebp_QL65_.jpg",
   },
   {
-    _id: '4',
-    title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    price: 7000,
-    description: 'A romantic novel that critiques the British landed gentry at the end of the 18th century.',
-    image: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=800&q=80'
+    _id: "4",
+    title: "The 7 Habits of Highly Effective People",
+    author: "Stephen R. Covey",
+    description: "Powerful lessons in personal change.",
+    price: Math.round(16.5 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/71UwSHSZRnS._AC_UY327_FMwebp_QL65_.jpg",
   },
   {
-    _id: '5',
-    title: 'The Catcher in the Rye',
-    author: 'J.D. Salinger',
-    price: 7800,
-    description: 'A coming-of-age story that explores themes of alienation and rebellion.',
-    image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80'
+    _id: "5",
+    title: "The Subtle Art of Not Giving a F*ck",
+    author: "Mark Manson",
+    description: "A counterintuitive approach to living a good life.",
+    price: Math.round(17.0 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_UY327_FMwebp_QL65_.jpg",
   },
   {
-    _id: '6',
-    title: 'Lord of the Flies',
-    author: 'William Golding',
-    price: 7200,
-    description: 'A novel about a group of British boys stranded on an uninhabited island.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80'
-  }
+    _id: "6",
+    title: "Think and Grow Rich",
+    author: "Napoleon Hill",
+    description:
+      "The most famous book on personal wealth and success ever published.",
+    price: Math.round(10.99 * 600), // Converted to CFA
+    image:
+      "https://m.media-amazon.com/images/I/71UypkUjStL._AC_UY327_FMwebp_QL65_.jpg",
+  },
 ];
 
 const fetchBook = async (id: string): Promise<Book> => {
