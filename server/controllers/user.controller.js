@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-
+import bcrypt from "bcryptjs";
 
 export const createUser = async (req, res, next) => {
     try {
@@ -14,9 +14,12 @@ export const createUser = async (req, res, next) => {
         if (u.length > 0) {
             return res.status(400).json({ message: "User already exists" });
         }
+
+        const salt = bcrypt.genSalt(10);
+        const hashedPassword = bcrypt.hash(password, salt);
         
         // Create new user
-        const user = await User.create({ email: email, password: password, name: name });
+        const user = await User.create({ email: email, password: hashedPassword, name: name });
         res.status(201).json({ success: true, message: "User created successfully", user });
     } catch (error) {
         next(error);

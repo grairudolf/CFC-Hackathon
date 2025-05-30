@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { PORT, DB_URI } from "./config/env.js";
 import userRouter from "./routes/user.routes.js";
+import BOOKS_ROUTE from "./routes/book.routes.js";
 import connectDB from "./database/db.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1/users/', userRouter);
+app.use('/api/v1/books/', BOOKS_ROUTE);
 
 app.use(errorMiddleware);
 

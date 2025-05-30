@@ -1,5 +1,16 @@
 import { Router } from "express";
 
-const BOOKS_BOUTE = Router();
+import BOOK_API_ENDPOINTS from "../controllers/book.controller";
 
-export default BOOKS_BOUTE;
+
+const BOOKS_ROUTE = Router();
+
+BOOKS_ROUTE
+
+    .get    ("/", BOOK_API_ENDPOINTS.GET_BOOK)
+    .post   ("/", BOOK_API_ENDPOINTS.CREATE_BOOK)
+    .update ("/", BOOK_API_ENDPOINTS.UPDATE_BOOK)
+    .delete ("/", BOOK_API_ENDPOINTS.DELETE_BOOK);
+
+
+export default BOOKS_ROUTE;
