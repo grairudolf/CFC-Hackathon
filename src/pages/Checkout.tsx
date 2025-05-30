@@ -53,14 +53,12 @@ const Checkout = () => {
 
       const paymentData = {
         amount: Math.round(totalWithTax).toString(),
-        email: formData.email,
         callback_url: `${window.location.origin}/payment-success`,
         customer: {
           name: formData.name,
           email: formData.email,
           phone_number: formData.phoneNumber,
           city: formData.city,
-          country: formData.country || "Cameroon",
         },
         items: state.items.map((item) => ({
           name: item.title,
@@ -186,7 +184,7 @@ const Checkout = () => {
                     className="w-full border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                   />
                 </div>
-                <div  className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Label htmlFor="country">Country</Label>
                   <Input
                     id="country"
@@ -198,7 +196,7 @@ const Checkout = () => {
                     className="w-full border-purple-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                   />
                 </div>
-                 <div  className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Label htmlFor="phoneNumber">Phone Number</Label>
                   <Input
                     id="phoneNumber"

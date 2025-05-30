@@ -49,7 +49,7 @@ const BOOK_API_ENDPOINTS = {
             Feilds_to_update = !request.body[feild] ? Feilds_to_update ++ : Feilds_to_update;
         });
 
-        if ()
+        if (Feilds_to_update === requiredFeilds.length) { return response.status(400).json({ message: "No feilds to update !" }); }
 
         try {
 

@@ -122,7 +122,7 @@ Before setting up the project, ensure the following tools are installed:
    # Create .env file in backend directory
    PORT=5000
    MONGODB_URI=mongodb://localhost:27017/bookstore
-   NKWA_API_KEY=7Wvq6JTL_i68jsgyMU474
+   NKWA_API_KEY=aesNYgqAuHhyMDklN9xIW
    NKWA_API_URL=https://api.nkwa.com/payments/initiate
    ```
 
@@ -168,12 +168,12 @@ Before setting up the project, ensure the following tools are installed:
 1. **API Key Configuration**
 
    - Add your Nkwa API key to the backend `.env` file
-   - The API key `7Wvq6JTL_i68jsgyMU474` should be stored as `NKWA_API_KEY`
+   - The API key `aesNYgqAuHhyMDklN9xIW` should be stored as `NKWA_API_KEY`
 
 2. **Payment Integration**
 
    - The payment endpoint is configured to use `https://api.nkwa.com/payments/initiate`
-   - Authorization header format: `Bearer 7Wvq6JTL_i68jsgyMU474`
+   - Authorization header format: `Bearer aesNYgqAuHhyMDklN9xIW`
    - The API expects: amount, email, callback_url
 
 3. **Callback URL**
@@ -239,7 +239,7 @@ VITE_API_URL=http://localhost:5000
 ```
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/bookstore
-NKWA_API_KEY=7Wvq6JTL_i68jsgyMU474
+NKWA_API_KEY=aesNYgqAuHhyMDklN9xIW
 NKWA_API_URL=https://api.nkwa.com/payments/initiate
 ```
 
