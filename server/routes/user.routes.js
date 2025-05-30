@@ -3,7 +3,7 @@ import { createUser, deleteUser, getAllUsers, getUser, updateUser } from "../con
 
 const userRouter = Router();
 
-userRouter.post('/sign-up', createUser);
+userRouter.post('/', createUser);
 
 userRouter.get('', getAllUsers);
 
